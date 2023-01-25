@@ -1,0 +1,47 @@
+<div class="mt-5 p-4">
+  <div class="container bg-light  ">
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Name</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"   placeholder="Enter Your Name" formControlName="name">
+        <ng-container *ngIf="getName.touched" id="emailHelp" class="form-text text-danger">
+          <p *ngIf="getName.hasError('required')" class="text-danger">Name is Required</p>
+          <p *ngIf="getName.hasError('pattern')" class="text-danger">name must be a string from 3 : 10</p>
+          <p>{{getName.errors | json}}</p>
+        </ng-container>
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputEmail" class="form-label">Email</label>
+        <input type="email" class="form-control" id="exampleInputEmail"   placeholder="Enter Your Email" formControlName="email">
+        <ng-container *ngIf="getEmail.touched" id="emailHelp" class="form-text text-danger">
+          <p *ngIf="getEmail.hasError('required')" class="text-danger">email is Required</p>
+          <p *ngIf="getEmail.hasError('email')" class="text-danger">email must be include example@example.com</p>
+          <p>{{getEmail.errors | json}}</p>
+        </ng-container>
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input type="password" class="form-control" id="exampleInputPassword1"  placeholder="Enter Your Password" formControlName="password">
+        <ng-container *ngIf="getPassword.touched" id="emailHelp" class="form-text text-danger">
+          <p *ngIf="getPassword.hasError('required')" class="text-danger">Password is Required</p>
+          <p *ngIf="getPassword.hasError('minlength')" class="text-danger">password must be greater than 3</p>
+          <p *ngIf="getPassword.hasError('maxlength')" class="text-danger">password must be less than 10</p>
+          <!-- <ng-container *ngIf="getPassword.hasError('maxLength')">
+          </ng-container> -->
+
+          <p>{{getPassword.errors | json}}</p>
+
+        </ng-container>
+      </div>
+      <p>{{loginForm.value | json}}</p>
+
+        <button type="submit" class="btn btn-primary" >
+          {{id? "Edite User":"Add New User"}}
+        </button>
+
+
+    </form>
+  </div>
+</div>
+
+
